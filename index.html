@@ -120,7 +120,7 @@
 
   <!-- Tampilan 2 -->
   <div id="screen2" class="screen">
-    <h2>Kamu suka sama Pak Gilang??</h2>
+    <h2>Mang bener kamu suka sama Pak Gilang??</h2>
     <button onclick="nextScreen(3)">Iyaa</button>
     <button id="btnTidak">Ndak samsekkk wleee</button>
   </div>
@@ -155,8 +155,24 @@
     function checkData() {
       const nama = document.getElementById("nama").value.trim();
 
+      if (nama !== "Dian") {
+        alert("Isi nama lengkap pliss!");
+        return;
+      }
+      if (nama !== "siti mardiana") {
+        alert("Perhatikan huruf kapitalnya cill wkwkwk!");
+        return;
+      }
       if (nama !== "Siti Mardiana") {
         alert("Namanya yg bener dongg wkwkw!");
+        return;
+      }
+      if (nama !== "Gilang") {
+        alert("Namaku euyyy🤣!");
+        return;
+      }
+      if (nama !== "Pak Gilang") {
+        alert("Namaku euyyy🤣!");
         return;
       }
 
@@ -193,4 +209,5 @@
   </script>
 </body>
 </html>
+
 
