@@ -29,73 +29,27 @@
       animation: fadeIn 0.6s ease;
       position: relative;
     }
-    .active {
-      display: block;
-    }
-    h1, h2 {
-      margin-bottom: 15px;
-      font-size: clamp(18px, 5vw, 28px);
-    }
+    .active { display: block; }
+    h1, h2 { margin-bottom: 15px; font-size: clamp(18px, 5vw, 28px); }
     input {
-      width: 100%;
-      max-width: 300px;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      width: 100%; max-width: 300px; padding: 12px; margin: 10px 0;
+      border: none; border-radius: 10px; font-size: 16px;
     }
     button {
-      padding: 12px 25px;
-      font-size: 16px;
-      margin: 10px;
-      border: none;
-      border-radius: 30px;
-      background: #FFD93D;
-      color: #333;
-      cursor: pointer;
-      transition: 0.3s;
-      width: auto;
-      min-width: 100px;
+      padding: 12px 25px; font-size: 16px; margin: 10px;
+      border: none; border-radius: 30px; background: #FFD93D; color: #333;
+      cursor: pointer; transition: 0.3s; width: auto; min-width: 100px;
     }
-    button:hover {
-      background: #FFB830;
-      transform: scale(1.05);
-    }
-    #btnTidak {
-      position: absolute;
-      background: #FF4E4E;
-      color: #fff;
-    }
-    iframe, video {
-      border-radius: 15px;
-      margin: 15px 0;
-      width: 100%;
-      height: 200px;
-    }
-    p {
-      margin: 8px 0;
-      font-size: clamp(14px, 4vw, 18px);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    button:hover { background: #FFB830; transform: scale(1.05); }
+    #btnTidak { position: absolute; background: #FF4E4E; color: #fff; }
+    iframe, video { border-radius: 15px; margin: 15px 0; width: 100%; height: 200px; }
+    p { margin: 8px 0; font-size: clamp(14px, 4vw, 18px); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @media (max-width: 600px) {
-      body {
-        padding: 20px;
-        align-items: flex-start;
-      }
-      .screen {
-        width: 100%;
-        padding: 15px;
-      }
-      iframe, video {
-        height: 180px;
-      }
+      body { padding: 20px; align-items: flex-start; }
+      .screen { width: 100%; padding: 15px; }
+      iframe, video { height: 180px; }
     }
-
-    /* Animasi geter tombol */
     @keyframes geter {
       0% { transform: translate(0,0); }
       20% { transform: translate(-5px,0); }
@@ -104,9 +58,7 @@
       80% { transform: translate(5px,0); }
       100% { transform: translate(0,0); }
     }
-    .geter {
-      animation: geter 0.4s ease;
-    }
+    .geter { animation: geter 0.4s ease; }
   </style>
 </head>
 <body>
@@ -155,34 +107,24 @@
     function checkData() {
       const nama = document.getElementById("nama").value.trim();
 
-      if (nama !== "Dian") {
+      if (!nama) {
         alert("Isi nama lengkap pliss!");
-        return;
-      }
-      if (nama !== "siti mardiana") {
+      } else if (nama.toLowerCase() === "siti mardiana") {
         alert("Perhatikan huruf kapitalnya cill wkwkwk!");
-        return;
-      }
-      if (nama !== "Siti Mardiana") {
+      } else if (nama === "Siti Mardiana") {
+        document.getElementById("ucapan").textContent = "Yeyyy, kamuu sukaa akuuu? HAHAHA☝️😭!";
+        nextScreen(2);
+      } else if (nama === "Gilang" || nama === "Pak Gilang") {
+        alert("Namaku euyyy🤣!");
+      } else if (nama === "Dian") {
+        alert("Halo Dian! 😎");
+      } else {
         alert("Namanya yg bener dongg wkwkw!");
-        return;
       }
-      if (nama !== "Gilang") {
-        alert("Namaku euyyy🤣!");
-        return;
-      }
-      if (nama !== "Pak Gilang") {
-        alert("Namaku euyyy🤣!");
-        return;
-      }
-
-      document.getElementById("ucapan").textContent = `Yeyyy, kamuu sukaa akuuu? HAHAHA☝️😭!`;
-      nextScreen(2);
     }
 
     // Tombol "Tidak" kabur di PC, geter di HP
     const btnTidak = document.getElementById("btnTidak");
-
     function kabur() {
       const maxX = window.innerWidth - btnTidak.offsetWidth;
       const maxY = window.innerHeight - btnTidak.offsetHeight;
@@ -192,16 +134,11 @@
       btnTidak.style.left = x + "px";
       btnTidak.style.top = y + "px";
     }
-
-    // PC (mouse)
     btnTidak.addEventListener("mouseover", kabur);
-
-    // HP (touch & klik) -> geter
     btnTidak.addEventListener("touchstart", () => {
       btnTidak.classList.add("geter");
       setTimeout(() => btnTidak.classList.remove("geter"), 400);
     });
-
     btnTidak.addEventListener("click", () => {
       btnTidak.classList.add("geter");
       setTimeout(() => btnTidak.classList.remove("geter"), 400);
@@ -209,5 +146,3 @@
   </script>
 </body>
 </html>
-
-
