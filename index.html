@@ -26,7 +26,7 @@
       text-align: center;
       box-shadow: 0 8px 25px rgba(0,0,0,0.2);
       animation: fadeIn 0.6s ease;
-      position: relative; /* supaya tombol “Tidak” bisa lari dalam kotak */
+      position: relative;
     }
     .active {
       display: block;
@@ -62,9 +62,12 @@
       transform: scale(1.05);
     }
     #btnTidak {
-      position: absolute;
+      position: fixed; /* biar bisa lari ke seluruh layar */
       background: #FF4E4E;
       color: #fff;
+      padding: 12px 20px;
+      border-radius: 25px;
+      transition: top 0.2s, left 0.2s;
     }
     iframe {
       border-radius: 15px;
@@ -122,14 +125,13 @@
   <div id="screen4" class="screen">
     <h1>Cubaiyatttt</h1>
     <div>
-      <!-- Video YouTube (pakai embed link) -->
+      <!-- Video YouTube autoplay -->
       <iframe 
-  src="https://www.youtube.com/embed/jAYviJQYcAo?list=RDjAYviJQYcAo&autoplay=1&mute=1" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
-
+        src="https://www.youtube.com/embed/jAYviJQYcAo?list=RDjAYviJQYcAo&autoplay=1&mute=1" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
     </div>
     <p>Semoga harimu menyenangkan!</p>
     <p>Jangan lupa tetap semangat!</p>
@@ -160,17 +162,16 @@
       nextScreen(2);
     }
 
-    // Tombol "Tidak" lari-lari dalam area screen
+    // Tombol "Tidak" lari-lari bebas di layar
     const btnTidak = document.getElementById("btnTidak");
     btnTidak.addEventListener("mouseover", () => {
-      const parent = btnTidak.parentElement;
-      const rect = parent.getBoundingClientRect();
-      const x = Math.random() * (rect.width - btnTidak.offsetWidth);
-      const y = Math.random() * (rect.height - btnTidak.offsetHeight);
+      const maxX = window.innerWidth - btnTidak.offsetWidth;
+      const maxY = window.innerHeight - btnTidak.offsetHeight;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
       btnTidak.style.left = x + "px";
       btnTidak.style.top = y + "px";
     });
   </script>
 </body>
 </html>
-
