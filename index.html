@@ -94,14 +94,27 @@
         height: 180px;
       }
     }
+
+    /* Animasi geter tombol */
+    @keyframes geter {
+      0% { transform: translate(0,0); }
+      20% { transform: translate(-5px,0); }
+      40% { transform: translate(5px,0); }
+      60% { transform: translate(-5px,0); }
+      80% { transform: translate(5px,0); }
+      100% { transform: translate(0,0); }
+    }
+    .geter {
+      animation: geter 0.4s ease;
+    }
   </style>
 </head>
 <body>
 
   <!-- Tampilan 1 -->
   <div id="screen1" class="screen active">
-    <h2>Welcome cangtippp</h2>
-    <label>Nama kamuu sinii: <br><input type="text" id="nama" placeholder="Masukkan nama..."></label><br>
+    <h2>Selamat Datang</h2>
+    <label>Nama: <br><input type="text" id="nama" placeholder="Masukkan nama..."></label><br>
     <button onclick="checkData()">Lanjut</button>
   </div>
 
@@ -141,7 +154,6 @@
 
     function checkData() {
       const nama = document.getElementById("nama").value.trim();
-      const umur = parseInt(document.getElementById("umur").value.trim());
 
       if (nama !== "Siti Mardiana") {
         alert("Namanya yg bener dongg wkwkw!");
@@ -152,8 +164,9 @@
       nextScreen(2);
     }
 
-    // Fungsi tombol "Tidak" kabur-kaburan (PC & HP)
+    // Tombol "Tidak" kabur di PC, geter di HP
     const btnTidak = document.getElementById("btnTidak");
+
     function kabur() {
       const maxX = window.innerWidth - btnTidak.offsetWidth;
       const maxY = window.innerHeight - btnTidak.offsetHeight;
@@ -167,9 +180,16 @@
     // PC (mouse)
     btnTidak.addEventListener("mouseover", kabur);
 
-    // HP (touch & klik)
-    btnTidak.addEventListener("touchstart", kabur);
-    btnTidak.addEventListener("click", kabur);
+    // HP (touch & klik) -> geter
+    btnTidak.addEventListener("touchstart", () => {
+      btnTidak.classList.add("geter");
+      setTimeout(() => btnTidak.classList.remove("geter"), 400);
+    });
+
+    btnTidak.addEventListener("click", () => {
+      btnTidak.classList.add("geter");
+      setTimeout(() => btnTidak.classList.remove("geter"), 400);
+    });
   </script>
 </body>
 </html>
