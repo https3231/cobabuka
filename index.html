@@ -9,8 +9,8 @@
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #74ABE2, #ffb6c1, #ffd6e0); /* biru + pink pastel */
-      color: #333;
+      background: linear-gradient(135deg, #74ABE2, #FF9CEE, #5563DE);
+      color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,11 +21,11 @@
       display: none;
       width: 90%;
       max-width: 600px;
-      background: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.15);
       border-radius: 20px;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
       animation: fadeIn 0.6s ease;
       position: relative;
     }
@@ -35,14 +35,13 @@
     h1, h2 {
       margin-bottom: 15px;
       font-size: clamp(18px, 5vw, 28px);
-      color: #d63384; /* pink manis */
     }
     input {
       width: 100%;
       max-width: 300px;
       padding: 12px;
       margin: 10px 0;
-      border: 2px solid #ffb6c1;
+      border: none;
       border-radius: 10px;
       font-size: 16px;
     }
@@ -73,12 +72,10 @@
       margin: 15px 0;
       width: 100%;
       height: 200px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     p {
       margin: 8px 0;
       font-size: clamp(14px, 4vw, 18px);
-      color: #444;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -102,9 +99,6 @@
     body.dark {
       background: linear-gradient(135deg, #222, #444);
       color: #eee;
-    }
-    body.dark .screen {
-      background: rgba(0,0,0,0.6);
     }
     body.dark button {
       background: #666;
@@ -181,18 +175,14 @@
         alert("Namanya yg bener dongg wkwkw!");
         return;
       }
-      if (umur !== 24) {
-        alert("Umurnya heyyyy harus 24 🤭");
-        return;
-      }
 
       document.getElementById("ucapan").textContent = `Yeyyy, kamuu sukaa akuuu? HAHAHA!`;
       nextScreen(2);
     }
 
-    // Tombol "Tidak" lari-lari ke seluruh layar
+    // Fungsi tombol "Tidak" kabur-kaburan (PC & HP)
     const btnTidak = document.getElementById("btnTidak");
-    btnTidak.addEventListener("mouseover", () => {
+    function kabur() {
       const maxX = window.innerWidth - btnTidak.offsetWidth;
       const maxY = window.innerHeight - btnTidak.offsetHeight;
       const x = Math.random() * maxX;
@@ -200,7 +190,14 @@
       btnTidak.style.position = "fixed";
       btnTidak.style.left = x + "px";
       btnTidak.style.top = y + "px";
-    });
+    }
+
+    // PC (mouse)
+    btnTidak.addEventListener("mouseover", kabur);
+
+    // HP (touch & klik)
+    btnTidak.addEventListener("touchstart", kabur);
+    btnTidak.addEventListener("click", kabur);
 
     // Toggle Dark/Light Mode
     const toggleBtn = document.getElementById("toggleMode");
